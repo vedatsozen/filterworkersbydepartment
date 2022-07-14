@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DROP DOWN MENU</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>ÇALIŞAN FİLTRELEME ( CİNSİYETE VE DEPARTMANA GÖRE ) </h1>
+<label>Cinsiyetine Göre Filtrele</label>
+<select id="selectid">
+    <option>Erkek</option>
+    <option>Kadın</option>
+</select>
+<button type="button" onclick="filtrele()">Filtrele</button>
+<hr>
+<label>Departmana Göre Filtrele</label>
+<select id="departmanid">
+    <option>Satış</option>
+    <option>Operasyon</option>
+</select>
+<button type="button" onclick="deptfiltrele()">Filtrele</button>
+<hr>
+<button type="button" onclick="listall()">Hepsini Listele</button>
+<hr>
+<div id="container"></div>
+</body>
+
+<script>
+
+const people = [
+    {
+        ad:"Ahmet",
+        cinsiyet:"Erkek",
+        yas:25,
+        departman:"Satış"
+    },
+    {
+        ad:"Mehmet",
+        cinsiyet:"Erkek",
+        yas:45,
+        departman:"Operasyon"
+    },
+    {
+        ad:"Ayşe",
+        cinsiyet:"Kadın",
+        yas:23,
+        departman:"Operasyon"
+    },
+    {
+        ad:"Yonca",
+        cinsiyet:"Kadın",
+        yas:45,
+        departman:"Operasyon"
+    },
+    {
+        ad:"Merve",
+        cinsiyet:"Kadın",
+        yas:55,
+        departman:"Satış"
+    }
+]
+
+function filtrele() {
+
+
+
+const gelendeger = document.getElementById("selectid").value;
+
+const filtrelenmis = people.filter(item => item.cinsiyet == gelendeger )
+
+document.getElementById("container").innerHTML = "" ;
+
+for ( let i=0;i<filtrelenmis.length;i++) {
+
+const newP = document.createElement("p");
+document.getElementById("container").appendChild(newP);
+newP.classList.add("myclass");
+newP.innerHTML += filtrelenmis[i].ad + "<br>";
+newP.innerHTML += filtrelenmis[i].yas + "<br>";
+newP.innerHTML += filtrelenmis[i].departman;
+
+}
+
+}
+
+function deptfiltrele() {
+
+const gelendeger2 = document.getElementById("departmanid").value;
+
+const departmanFiltre = people.filter(item => item.departman == gelendeger2 )
+
+document.getElementById("container").innerHTML = "" ;
+
+for ( let i=0;i<departmanFiltre.length;i++) {
+
+const newP = document.createElement("p");
+document.getElementById("container").appendChild(newP);
+newP.classList.add("myclass");
+newP.innerHTML += departmanFiltre[i].ad + "<br>";
+newP.innerHTML += departmanFiltre[i].yas + "<br>";
+newP.innerHTML += departmanFiltre[i].departman;
+
+}
+
+}
+
+function listall() {
+
+
+document.getElementById("container").innerHTML = "" ;
+
+for ( let i=0;i<people.length;i++) {
+
+const newP = document.createElement("p");
+document.getElementById("container").appendChild(newP);
+newP.classList.add("myclass");
+newP.innerHTML += people[i].ad + "<br>";
+newP.innerHTML += people[i].yas + "<br>";
+newP.innerHTML += people[i].departman;
+
+}
+
+}
+
+</script>
+</html>
